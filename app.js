@@ -5,16 +5,13 @@ const User = require("./models/users.model");
 const jwt = require("jsonwebtoken");
 const bycrypt = require("bcryptjs");
 const routes = require("./routes/index");
-
+const cors = require("cors");
 //middleware
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
-// app.get("/test", (req, res) => {
-//   console.log("✅ /test route hit");
-//   res.send("Test route OK");
-// });
+app.use(cors());
 
 //routes
 app.use("/api/v1", routes);

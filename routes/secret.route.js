@@ -13,7 +13,7 @@ const {
 
 router.post("/create", authenticateJWT, createSecret);
 
-router.get("/", authenticateJWT, getAllSecrets);
+router.get("/", getAllSecrets);
 
 router.get("/my-secrets", authenticateJWT, getMySecrets);
 
