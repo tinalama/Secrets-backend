@@ -27,10 +27,9 @@ const getOneSecret = async (secretId, userId) => {
 
 const getAllSecrets = async () => {
   try {
-    const secrets = await Secret.find({}).populate(
-      "createdBy",
-      "f_name l_name"
-    );
+    const secrets = await Secret.find({})
+      .sort({ createdAt: -1 }) // Descending order
+      .populate("createdBy", "f_name l_name");
     return secrets;
   } catch (err) {
     throw err;
@@ -39,10 +38,9 @@ const getAllSecrets = async () => {
 
 const getMySecrets = async (userId) => {
   try {
-    const secrets = await Secret.find({ createdBy: userId }).populate(
-      "createdBy",
-      "f_name l_name"
-    );
+    const secrets = await Secret.find({ createdBy: userId })
+      .sort({ createdAt: -1 }) // Sort by newest first
+      .populate("createdBy", "f_name l_name");
     return secrets;
   } catch (err) {
     throw err;
